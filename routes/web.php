@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PemakaianAirController;
+// use App\Http\Controllers\Pengguna2Controller;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\TarifAirController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,19 @@ Route::get('/pemakaian_air', [PemakaianAirController::class, 'addDataPemakaianAi
 
 // Route::match(['get', 'post'], '/edit{id_pengguna}', 'PenggunaController@edit');
 
-Route::post('update', 'use App\Http\Controllers\PenggunaController@update')->name('update');
+// Route::patch('pengguna_air/update', [PenggunaController::class, 'update'])->name('pengguna_air.update');
 
-// Route::match(['get', 'post'], '/editDataPengguna{id_pengguna}', 'App\Http\Controllers\PenggunaController@editDataPengguna');
+// Route::prefix('update')->group(function () {
+//     Route::post('/pengguna_air', [PenggunaController::class, 'update']);
+//     Route::resource('pengguna_air', PenggunaControler::class);
+// });
+
+// Route::resource('/pengguna_air', 'PenggunaController');
+
+// Route::match(['get', 'post'])
+
+// Route::match(['get', 'post'], '/pengguna_air/{id_pengguna}', 'App\Http\Controllers\PenggunaController@update');
+
+// Route::match(['get', 'post'], '/pengguna_air/{id_pengguna}', 'App\Http\Controllers\PenggunaController@update');
+
+Route::post('/pengguna_air/{id_pengguna}', [PenggunaController::class, 'update'])->name('update');

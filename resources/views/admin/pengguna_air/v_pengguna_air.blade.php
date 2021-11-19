@@ -99,7 +99,7 @@
                                 </div>
 
                                 <select class="form-control" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}">
-                                    <option value="" disabled selected>Jenis Kelamin</option>
+                                    <option value="" hidden>Jenis Kelamin</option>
                                     <option value="P">Perempuan</option>
                                     <option value="L">Laki-Laki</option>
                                 </select>
@@ -136,7 +136,7 @@
                                 <select class="form-control" name="status_pengguna"
                                     value="{{ old('status_pengguna') }}">
 
-                                    <option value="" disabled selected>Status Pengguna</option>
+                                    <option value="" hidden>Status Pengguna</option>
                                     <option value="T">Tidak Aktif</option>
                                     <option value="Y">Aktif</option>
                                 </select>
@@ -214,7 +214,6 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Id Pengguna</th>
                                         <th>Nama Pengguna</th>
                                         <th>NIK</th>
                                         <th>Nomer WhatsApp</th>
@@ -231,7 +230,6 @@
                                         <tr>
 
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $pa->id_pengguna }}</td>
                                             <td>{{ $pa->nama_lengkap }}</td>
                                             <td>{{ $pa->nik }}</td>
                                             <td>{{ $pa->nomer_hp }}</td>
@@ -255,7 +253,7 @@
                                             </td>
 
                                             <td>
-                                                <button class="btn btn-warning btn-xs editbtn" type="button"
+                                                {{-- <button class="btn btn-warning btn-xs editbtn" type="button"
                                                     data-toggle="modal" data-target="#modalUpdateData"
                                                     data-id_pengguna="{{ $pa->id_pengguna }}"
                                                     data-nama_lengkap="{{ $pa->nama_lengkap }}"
@@ -264,7 +262,11 @@
                                                     data-status_pengguna="{{ $pa->status_pengguna }}"
                                                     data-alamat_pengguna="{{ $pa->alamat_pengguna }}">
                                                     <i class="fas fa-pen "></i>
-                                                </button>
+                                                </button> --}}
+
+                                                <a href="#" class="btn btn-warning btn-xs editbtn">
+                                                    <i class="fas fa-pen"></i>
+                                                </a>
                                                 <a href="" class="btn btn-danger btn-xs">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
@@ -294,10 +296,9 @@
                         </button>
                     </div>
 
-                    <form action="" method="POST">
+                    <form action="/pengguna_air" method="POST" id="editForm">
 
                         @csrf
-                        @method('patch')
 
                         <input type="text" hidden class="form-control" name="id" id="edit_id_pengguna" value="">
                         <div class="modal-body">
@@ -359,7 +360,7 @@
                                     </div>
 
                                     <select class="form-control" name="jenis_kelamin" value="" id="edit_jenis_kelamin">
-                                        <option value="" disabled selected>Jenis Kelamin</option>
+                                        <option value="" hidden>Jenis Kelamin</option>
                                         <option value="P">Perempuan</option>
                                         <option value="L">Laki-Laki</option>
                                     </select>
@@ -395,7 +396,7 @@
                                     </div>
                                     <select class="form-control" name="status_pengguna" id="edit_status_pengguna"
                                         value="">
-                                        <option disabled selected>Status Pengguna</option>
+                                        <option hidden>Status Pengguna</option>
                                         <option value="T">Tidak Aktif</option>
                                         <option value="Y">Aktif</option>
                                     </select>
@@ -414,6 +415,7 @@
                             <button type="submit" class="btn btn-primary"> <i class="fas fa-save mr-2"></i> Save
                                 Changes </button>
                         </div>
+
                     </form>
                 </div>
             </div>

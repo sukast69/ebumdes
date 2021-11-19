@@ -500,24 +500,14 @@
         </script>
     @endif
 
+
     {{-- <script>
-        $(document).on('click', 'edit'function() {
-            var _this = $(this).parents('tr');
-            $('#id').val(_this.find('.id_pengguna').text());
-            $('#e_nama_lengkap').val(_this.find('.nama_lengkap').text());
-            $('#e_nik').val(_this.find('.nik').text());
-            $('#e_nomer_hp').val(_this.find('.nomer_hp').text());
-            $('#e_jenis_kelamin').val(_this.find('.jenis_kelamin').text());
-            $('#e_status_pengguna').val(_this.find('.status_pengguna').text());
-            $('#e_alamat_pengguna').val(_this.find('.alamat_pengguna').text());
-
-        });
-    </script> --}}
-
-    <script>
         $(document).ready(function() {
+
+            
             $('.editbtn').on('click', function() {
-                $('#modalUpdateData').modal('show');
+
+                // $('#modalUpdateData').modal('show');
 
                 $tr = $(this).closest('tr');
 
@@ -525,89 +515,82 @@
                     return $(this).text();
                 }).get();
 
-                // console.log(data[5].trim());
                 console.log(data);
 
-                // console.log($('.editbtn').attr("data-jenis_kelamin"))
+                $('#edit_nama_lengkap').val(data[1]);
+                $('#edit_nik').val(data[2]);
+                $('#edit_nomer_hp').val(data[3]);
 
-                $('#edit_id_pengguna').val(data[1]);
-                $('#edit_nama_lengkap').val(data[2]);
-                $('#edit_nik').val(data[3]);
-                $('#edit_nomer_hp').val(data[4]);
-                // $('#edit_jenis_kelamin option').attr(select);
-
-                // $('#edit_jenis_kelamin').val($('.editbtn').attr("data-jenis_kelamin"));
 
                 $('#edit_jenis_kelamin option')
                     .removeAttr('selected')
-                    .filter(`[value=${data[5].trim() == 'Laki - Laki' ? 'L' : 'P' }]`)
+                    .filter(`[value=${data[4].trim() == 'Laki - Laki' ? 'L' : 'P' }]`)
                     .attr('selected', true);
 
-                // $('select>option:eq(3)').attr('selected', true);
+                $('#edit_alamat_pengguna').val(data[5]);
 
-                // $('#edit_jenis_kelamin').val(data[5]);
-
-                $('#edit_alamat_pengguna').val(data[6]);
-                
                 $('#edit_status_pengguna option')
                     .removeAttr('selected')
-                    .filter(`[value=${data[7].trim() == 'Tidak Aktif' ? 'T' : 'Y' }]`)
+                    .filter(`[value=${data[6].trim() == 'Tidak Aktif' ? 'T' : 'Y' }]`)
                     .attr('selected', true);
 
-                // $('#edit_status_pengguna').val(data[7]);
+                $('#editForm').attr('action', '/pengguna_air/' + data[0]);
+                $('#modalUpdateData').modal('show');
 
-                // console.log($('#edit_jenis_kelamin').children());
 
 
 
 
             });
         });
-    </script>
-
-    {{-- <script>
-        var myModal = document.getElementById('modalUpdateData')
-        console.log(modalUpdateData)
-
-        modalUpdateData.addEventListener('shown.modal', function(event) {
-
-            console.log('modal opened')
-
-            var button = event.relatedTarget
-            var id_pengguna = button.getAttribute('data-id_pengguna')
-            var nama_lengkap = button.getAttribute('data-nama_lengkap')
-            var nik = button.getAttribute('data-nik')
-            var nomer_hp = button.getAttribute('data-nomer_hp')
-            var jenis_kelamin = button.getAttribute('data-jenis_kelamin')
-            var status_pengguna = button.getAttribute('data-status_pengguna')
-            var alamat_pengguna = button.getAttribute('data-alamat_pengguna')
-
-
-
-            const v_id_pengguna = document.getElementById('edit_id_pengguna')
-            const v_nama_lengkap = document.getElementById('edit_nama_lengkap')
-            const v_nik = document.getElementById('edit_nik')
-            const v_nomer_hp = document.getElementById('edit_nomer_hp')
-            const v_jenis_kelamin = document.getElementById('edit_jenis_kelamin')
-            const v_alamat_pengguna = document.getElementById('edit_alamat_pengguna')
-            const v_status_pengguna = document.getElementById('edit_status_pengguna')
-
-            console.log(tes)
-
-
-            v_id_pengguna.value = id_pengguna
-            v_nama_lengkap.value = nama_lengkap
-            v_nik.value = nik
-            v_nomer_hp.value = nomer_hp
-            v_jenis_kelamin.value = jenis_kelamin
-            v_alamat_pengguna.value = alamat_pengguna
-            v_status_pengguna.value = status_pengguna
-
-
-        })
     </script> --}}
 
+    <script>
+        $(document).ready(function() {
 
+            var table = $('#basic-datatables').DataTable();
+
+            table.on('click', '.editbtn', function() {
+
+                $tr = $(this).closest('tr');
+                if ($($tr).hasClass('child')) {
+                    $tr = $tr.prev('.parent');
+                }
+
+                var data = table.row($tr).data();
+                console.log(data);
+
+                $('#edit_nama_lengkap').val(data[1]);
+                $('#edit_nik').val(data[2]);
+                $('#edit_nomer_hp').val(data[3]);
+                // $('#edit_jenis_kelamin').val(data[4]);
+
+
+
+                $('#edit_jenis_kelamin option')
+                    .removeAttr('selected')
+                    .filter(`[value=${data[4].trim() == 'Laki - Laki' ? 'L' : 'P' }]`)
+                    .attr('selected', true);
+
+                $('#edit_alamat_pengguna').val(data[5]);
+
+                $('#edit_status_pengguna option')
+                    .removeAttr('selected')
+                    .filter(`[value=${data[6].trim() == 'Tidak Aktif' ? 'T' : 'Y' }]`)
+                    .attr('selected', true);
+
+
+                // $('#edit_jenis_kelamin').val(data[6]);
+                
+                $('#editForm').attr('action', '/pengguna_air/' + data[0]);
+                $('#modalUpdateData').modal('show');
+
+            });
+
+
+
+        });
+    </script>
 
 
 

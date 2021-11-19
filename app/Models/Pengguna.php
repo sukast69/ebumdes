@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Psy\Command\WhereamiCommand;
 
 class Pengguna extends Model
 {
@@ -25,6 +24,6 @@ class Pengguna extends Model
 
     public function updateDataPengguna($id_pengguna, $data)
     {
-      DB::table('tb_pengguna_air')->where('id_pengguna', $id_pengguna)->update($data);
+        DB::table('tb_pengguna_air')->where('id_pengguna', $id_pengguna)->update($data);
     }
 }
