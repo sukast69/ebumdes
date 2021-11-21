@@ -363,7 +363,9 @@
                         </div>
                     </div>
                 </div>
+
                 @yield('content')
+                
             </div>
 
 
@@ -581,7 +583,7 @@
 
 
                 // $('#edit_jenis_kelamin').val(data[6]);
-                
+
                 $('#editForm').attr('action', '/pengguna_air/' + data[0]);
                 $('#modalUpdateData').modal('show');
 
@@ -591,6 +593,31 @@
 
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $(document).one('click', '.editbtn', function() {
+
+
+                var id_tarif = $(this).val();
+                // alert(tarif_id);
+
+
+                $('#modalUpdateTarifAir').modal('show');
+                $.ajax({
+                    type: "GET",
+                    url: "/tarif_air/" + id_tarif,
+                    success: function(response) {
+
+                        console.log(response);
+
+                    }
+                });
+
+            });
+        });
+    </script>
+
 
 
 

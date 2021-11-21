@@ -152,9 +152,9 @@
                         <div class="modal-footer">
 
                             <button type="button" class="btn btn-danger" data-dismiss="modal"> <i
-                                    class="fas fa-window-close mr-2"></i> Close</button>
-                            <button type="submit" class="btn btn-primary "> <i class="fas fa-save mr-2"></i> Save
-                                changes</button>
+                                    class="fas fa-window-close mr-2"></i> Tutup</button>
+                            <button type="submit" class="btn btn-primary "> <i class="fas fa-save mr-2"></i>
+                                Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -267,9 +267,13 @@
                                                 <a href="#" class="btn btn-warning btn-xs editbtn">
                                                     <i class="fas fa-pen"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-xs">
+                                                <button type="button" class=" btn btn-danger btn-xs" data-toggle="modal"
+                                                    data-target="#hapus{{ $pa->id_pengguna }}">
                                                     <i class="fas fa-trash"></i>
-                                                </a>
+                                                </button>
+
+
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -283,7 +287,7 @@
 
         {{-- end data pengguna --}}
 
-        {{-- edit pengguna --}}
+        {{-- modal edit pengguna --}}
 
         <div class="modal fade" id="modalUpdateData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -411,9 +415,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal"> <i
-                                    class="fas fa-window-close mr-2"></i>Close</button>
-                            <button type="submit" class="btn btn-primary"> <i class="fas fa-save mr-2"></i> Save
-                                Changes </button>
+                                    class="fas fa-window-close mr-2"></i>Tutup</button>
+                            <button type="submit" class="btn btn-primary"> <i class="fas fa-save mr-2"></i> Perbarui
+                            </button>
                         </div>
 
                     </form>
@@ -421,9 +425,42 @@
             </div>
         </div>
 
+        {{-- end modal edit pengguna --}}
+
+        {{-- modal delete pengguna --}}
+
+        @foreach ($pengguna_air as $pa)
+            <div class="modal  fade mt-5" id="hapus{{ $pa->id_pengguna }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus pengguna {{ $pa->nama_lengkap }} ?
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah anda ingin menghapus data dari {{ $pa->nama_lengkap }}?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="/pengguna/delete/{{ $pa->id_pengguna }}" class="btn btn-primary">Yes</a>
+                            {{-- <button type=" submit" class="btn btn-primary">Save changes</button> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        @endforeach
 
 
-        {{-- end edit pengguna --}}
+
+        {{-- end modal deleted pengguna --}}
+
+
+
 
     </div>
 @endsection

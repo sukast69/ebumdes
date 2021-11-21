@@ -26,4 +26,9 @@ class Pengguna extends Model
     {
         DB::table('tb_pengguna_air')->where('id_pengguna', $id_pengguna)->update($data);
     }
+
+    public function deleteDataPengguna($id_pengguna)
+    {
+        DB::table('tb_pengguna_air')->where('id_pengguna', $id_pengguna)->delete();
+    }
 }

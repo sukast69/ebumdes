@@ -31,7 +31,8 @@ Route::get('/', function () {
 // Route::get('/', [PenggunaController::class, 'index']);
 
 Route::get('/pengguna_air', [PenggunaController::class, 'index']);
-Route::get('/pengguna_air', [PenggunaController::class, 'index'])->name('insert');
+
+Route::get('/pengguna_air', [PenggunaController::class, 'index'])->name('pengguna');
 
 Route::get('/tarif_air', [TarifAirController::class, 'index']);
 
@@ -60,3 +61,6 @@ Route::get('/pemakaian_air', [PemakaianAirController::class, 'addDataPemakaianAi
 // Route::match(['get', 'post'], '/pengguna_air/{id_pengguna}', 'App\Http\Controllers\PenggunaController@update');
 
 Route::post('/pengguna_air/{id_pengguna}', [PenggunaController::class, 'update'])->name('update');
+Route::get('pengguna/delete/{id_pengguna}', [PenggunaController::class, 'delete']);
+
+Route::get('tarif_air/{id_tarif}', [TarifAirController::class, 'update']);

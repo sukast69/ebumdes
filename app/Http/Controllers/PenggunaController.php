@@ -60,9 +60,9 @@ class PenggunaController extends Controller
 
         $this->Pengguna->addDataPengguna($dataPengguna);
 
-        Alert::success('Sukses', 'Data Berhasil ditambahkan');
+        toast('Data Berhasil ditambahkan', 'success');
 
-        return \redirect()->route('insert');
+        return \redirect()->route('pengguna');
 
         // return \view('admin/pengguna_air/v_pengguna_air');
     }
@@ -104,9 +104,21 @@ class PenggunaController extends Controller
 
         $this->Pengguna->updateDataPengguna($id_pengguna, $dataPengguna);
 
-        Alert::success('Sukses', 'Data Berhasil dirubah');
+        Alert::success('Sukses', 'Data berhasil diubah');
 
-        return \redirect('/pengguna_air');
+        // toast('Data berhasil dirubah', 'success');
+
+        return \redirect()->route('pengguna');
+
+    }
+
+    public function delete($id_pengguna)
+    {
+        $this->Pengguna->deleteDataPengguna($id_pengguna);
+
+        toast('Data Berhasil dihapus', 'warning');
+
+        return \redirect()->route('pengguna');
 
     }
 
@@ -231,6 +243,14 @@ class PenggunaController extends Controller
 
     //     return \redirect('/pengguna_air');
 
+    // }
+
+    // public function delete($id_pengguna)
+    // {
+    //     $pgn = Pengguna::find($id_pengguna);
+    //     $pgn = delete();
+
+    //     return \redirect('/pengguna_air');
     // }
 
 }
