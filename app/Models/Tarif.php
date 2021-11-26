@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Tarif extends Model
 {
+    protected $table = "tb_tarif_air";
+    protected $primaryKey = "id_tarif";
 
     public function allDataTarif()
     {

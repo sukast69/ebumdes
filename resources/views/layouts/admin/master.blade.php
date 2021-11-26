@@ -365,7 +365,7 @@
                 </div>
 
                 @yield('content')
-                
+
             </div>
 
 
@@ -503,50 +503,6 @@
     @endif
 
 
-    {{-- <script>
-        $(document).ready(function() {
-
-            
-            $('.editbtn').on('click', function() {
-
-                // $('#modalUpdateData').modal('show');
-
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#edit_nama_lengkap').val(data[1]);
-                $('#edit_nik').val(data[2]);
-                $('#edit_nomer_hp').val(data[3]);
-
-
-                $('#edit_jenis_kelamin option')
-                    .removeAttr('selected')
-                    .filter(`[value=${data[4].trim() == 'Laki - Laki' ? 'L' : 'P' }]`)
-                    .attr('selected', true);
-
-                $('#edit_alamat_pengguna').val(data[5]);
-
-                $('#edit_status_pengguna option')
-                    .removeAttr('selected')
-                    .filter(`[value=${data[6].trim() == 'Tidak Aktif' ? 'T' : 'Y' }]`)
-                    .attr('selected', true);
-
-                $('#editForm').attr('action', '/pengguna_air/' + data[0]);
-                $('#modalUpdateData').modal('show');
-
-
-
-
-
-            });
-        });
-    </script> --}}
-
     <script>
         $(document).ready(function() {
 
@@ -594,30 +550,104 @@
         });
     </script>
 
+
+
+    {{-- script  data tarif --}}
     <script>
         $(document).ready(function() {
-            $(document).one('click', '.editbtn', function() {
+
+            read()
 
 
-                var id_tarif = $(this).val();
-                // alert(tarif_id);
-
-
-                $('#modalUpdateTarifAir').modal('show');
-                $.ajax({
-                    type: "GET",
-                    url: "/tarif_air/" + id_tarif,
-                    success: function(response) {
-
-                        console.log(response);
-
-                    }
-                });
-
-            });
         });
-    </script>
 
+        function read() {
+            $.get("{{ url('read') }}", {}, function(data, status) {
+
+                $("#read").html(data);
+            });
+        }
+
+        function create() {
+            $.get("{{ url('create') }}", {}, function(data, status) {
+                $("#page").html(data);
+                $("#modalCreateTarifAir").modal('show');
+            });
+
+
+        }
+
+        function show(id_tarif) {
+            $.get("{{ url('show') }}/" + id_tarif, {}, function(data, status) {
+                $("#page").html(data);
+                $("#modalCreateTarifAir").modal('show');
+            });
+
+
+        }
+
+        function update(id_tarif) {
+
+            var r_a_awal = $("#edit_r_a_awal").val();
+            var r_a_akhir = $("#edit_r_a_akhir").val();
+            var r_a_biaya = $("#edit_r_a_biaya").val();
+
+            var r_b_awal = $("#edit_r_b_awal").val();
+            var r_b_akhir = $("#edit_r_b_akhir").val();
+            var r_b_biaya = $("#edit_r_b_biaya").val();
+
+            var r_c_awal = $("#edit_r_c_awal").val();
+            var r_c_akhir = $("#edit_r_c_akhir").val();
+            var r_c_biaya = $("#edit_r_c_biaya").val();
+
+            var biaya_admin = $("#edit_biaya_admin").val();
+            var biaya_service = $("#edit_biaya_service").val();
+
+            $.ajax({
+                type: "get",
+                url: "{{ url('update') }}/" + id_tarif,
+                data:
+
+                {
+                    r_a_awal: r_a_awal,
+                    r_a_akhir: r_a_akhir,
+                    r_a_biaya: r_a_biaya,
+
+                    r_b_awal: r_b_awal,
+                    r_b_akhir: r_b_akhir,
+                    r_b_biaya: r_b_biaya,
+
+                    r_c_awal: r_c_awal,
+                    r_c_akhir: r_c_akhir,
+                    r_c_biaya: r_c_biaya,
+
+                    biaya_admin: biaya_admin,
+                    biaya_service: biaya_service,
+
+                },
+
+
+                // "r_a_awal=" + r_a_awal,
+
+                // + "r_a_akhir=" + r_a_akhir + "r_a_biaya=" + r_a_biaya + "r_b_awal=" +
+                // r_b_awal + "r_b_akhir=" + r_b_akhir + "r_b_biaya=" + r_b_biaya + "r_c_awal=" + r_c_awal +
+                // "r_c_akhir=" + r_c_akhir + "r_c_biaya=" + r_c_biaya + "biaya_admin=" + biaya_admin +
+                // "biaya_admin=" + biaya_admin,
+
+                success: function(data) {
+
+                    
+
+                    // $(".close").click();
+
+                    // read()
+
+                }
+            });
+
+        }
+    </script>
+    {{-- end script  data tarif --}}
 
 
 

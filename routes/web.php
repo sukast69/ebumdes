@@ -3,7 +3,7 @@
 use App\Http\Controllers\PemakaianAirController;
 // use App\Http\Controllers\Pengguna2Controller;
 use App\Http\Controllers\PenggunaController;
-use App\Http\Controllers\TarifAirController;
+use App\Http\Controllers\TarifAir2Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return view('home');
+    return view('admin.home');
 });
 // Route::get('/pengguna_air', function () {
 //     return view('admin.pengguna_air.v_pengguna_air');
@@ -34,7 +34,7 @@ Route::get('/pengguna_air', [PenggunaController::class, 'index']);
 
 Route::get('/pengguna_air', [PenggunaController::class, 'index'])->name('pengguna');
 
-Route::get('/tarif_air', [TarifAirController::class, 'index']);
+Route::get('/tarif_air', [TarifAir2Controller::class, 'index']);
 
 Route::post('/add_pengguna', [PenggunaController::class, 'addDataPengguna']);
 Route::get('/pemakaian_air', [PemakaianAirController::class, 'addDataPemakaianAir']);
@@ -63,4 +63,10 @@ Route::get('/pemakaian_air', [PemakaianAirController::class, 'addDataPemakaianAi
 Route::post('/pengguna_air/{id_pengguna}', [PenggunaController::class, 'update'])->name('update');
 Route::get('pengguna/delete/{id_pengguna}', [PenggunaController::class, 'delete']);
 
-Route::get('tarif_air/{id_tarif}', [TarifAirController::class, 'update']);
+// Route::get('/edit_tarif_air/{id_tarif}', [TarifAirController::class, 'update']);
+
+Route::get('/create', [TarifAir2Controller::class, 'create']);
+
+Route::get('/read', [TarifAir2Controller::class, 'read']);
+Route::get('/show/{id_tarif}', [TarifAir2Controller::class, 'show']);
+Route::get('/update/{id_tarif}', [TarifAir2Controller::class, 'update']);

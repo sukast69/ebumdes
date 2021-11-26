@@ -23,21 +23,20 @@ class TarifAirController extends Controller
     public function update($id_tarif)
     {
 
-        $dataTarif = [
-            'nik' => Request()->nik,
-            'nama_lengkap' => Request()->nama_lengkap,
-            'nomer_hp' => Request()->nomer_hp,
-            'jenis_kelamin' => Request()->jenis_kelamin,
-            'status_pengguna' => Request()->status_pengguna,
-            'alamat_pengguna' => Request()->alamat_pengguna,
+        $dataTarif = Tarif::find($id_tarif);
 
-        ];
-
-        $this->Pengguna->updateDataTarif($id_tarif, $dataTarif);
-
-        return \response()->json([
+        return response()->json([
             'status' => 200,
             'tarif' => $dataTarif,
+
+        ]);
+    }
+
+    public function show($id_tarif)
+    {
+        $data = Tarif::findOrFail($id_tarif);
+        return view('tarif_air')->with([
+            'data' => $data,
         ]);
     }
 }

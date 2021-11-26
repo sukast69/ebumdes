@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Pengguna;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class PenggunaController extends Controller
 {
@@ -104,9 +103,9 @@ class PenggunaController extends Controller
 
         $this->Pengguna->updateDataPengguna($id_pengguna, $dataPengguna);
 
-        Alert::success('Sukses', 'Data berhasil diubah');
+        // Alert::success('Sukses', 'Data berhasil diubah');
 
-        // toast('Data berhasil dirubah', 'success');
+        toast('Data berhasil diubah', 'success');
 
         return \redirect()->route('pengguna');
 
